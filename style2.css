@@ -1,0 +1,508 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    background-color: black;
+}
+nav{
+    width: 100%;
+    height: 10vh;
+    position: sticky;
+}
+.nav-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.logo{
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.logo span{
+    color: #b74b4b;
+    text-shadow: 0 0 10px #b74b4b;
+}
+.hamburg,
+.cancel{
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: white;
+    display: none;
+    font-size: clamp(2.5rem, 0.5rem + 5vw, 3rem);
+}
+.nav-container .links{
+    display: flex;
+}
+.nav-container .links a{
+    position: relative;
+    font-size: 1.2rem;
+    color: white;
+    margin: 0 20px;
+    text-decoration: none;
+    font-weight: 550;
+    transition: 0.3s linear;
+}
+.nav-container .links a::before{
+    position: absolute;
+    content: "";
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: #b74b4b;
+    transition: 0.2s linear;
+}
+.nav-container .links a:hover::before{
+    width: 100%;
+}
+.nav-container .links a:hover{
+    color: #b74b4b;
+}
+.dropdown{
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    transform: translateY(-500px);
+    width: 100%;
+    height: auto;
+    backdrop-filter: blur(4px) brightness(40%);
+    box-shadow:  0 0 20px black;
+    transition: 0.2s linear;
+}
+.dropdown .links a{
+    display: flex;
+    color: white;
+    text-decoration: none;
+    justify-content: center;
+    padding: 15px 0;
+    align-items: center;
+    transition: 0.2s linear;
+}
+.dropdown .links a:hover{
+    background-color: #b74b4b;
+}
+section{
+    width: 100%;
+    height: 90vh;
+}
+.main-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.main-container .image{
+    width: 500px;
+    height: 80vh;
+    border-radius: 100%;
+    overflow: hidden;
+    box-shadow: 0 0 50px #b74b4b;
+}
+.main-container .image img{
+    width: 100%;
+}
+.main-container .image:hover{
+    animation: animate 1.5s ease-in-out infinite;
+}
+@keyframes animate {
+    0%{
+        scale: 1;
+    }
+    50%{
+        scale: 1.05;
+    }
+    100%{
+        scale: 1;
+    }
+}
+.main-container .content{
+    color: white;
+    width: 40%;
+    min-height: 100px;
+}
+.content h1{
+    font-size: clamp(1rem, 1rem + 5vw, 1.8rem);
+}
+.content h1 span{
+    color: #b74b4b;
+    text-shadow: 0  0 10px #b74b4b;
+}
+.content .typewriter{
+    font-size: clamp(1rem, 1rem + 5vw, 2.5rem);
+    font-weight: 600;
+}
+.content .typewriter-text{
+    color: #b74b4b;
+    text-shadow: 0 0 10px #b74b4b;
+}
+.content p{
+    font-size: clamp(0.4rem , 0.2rem + 9vw, 1rem);
+    margin: 10px 0;
+}
+.social-links i{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    background-color: transparent;
+    border: 0.2rem solid #b74b4b;
+    border-radius: 50%;
+    color: #b74b4b;
+    margin: 5px 15px;
+    font-size: 1.5rem;
+    transition: 0.2s linear;
+}
+.social-links i:hover{
+    scale: 1.3;
+    color: black;
+    background-color: #b74b4b;
+    filter: drop-shadow(0 0 10px #b74b4b);
+}
+.content button{
+    width: 50%;
+    height: 6vh;
+    margin: 30px;
+    background-color: #b74b4b;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 120%;
+    font-weight: 700;
+    border-radius: 5px;
+    transition: 0.2s linear;
+}
+.content button:hover{
+    scale: 1.1;
+    color: #b74b4b;
+    border: 2px solid #b74b4b;
+    background-color: transparent;
+    font-weight: 700;
+    box-shadow: 0 0 40px #b74b4b;
+}
+/* Hiệu ứng khi cuộn trang */
+#about {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.5s ease-in-out;
+}
+
+#about.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#about {
+    padding: 50px 20px;
+    color: #fff;
+    background-color: #0000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+}
+
+/* Tối ưu cho các màn hình nhỏ */
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    align-items: center;
+    justify-content: center; /* Đảm bảo phần tử căn giữa */
+}
+
+/* Cập nhật hình ảnh */
+.about-pic img {
+    width: auto;
+    height: 250px; /* Thay đổi kích thước để hình ảnh không quá lớn */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Nội dung phần "About" */
+.about-content {
+    max-width: 600px;
+    text-align: center; /* Căn giữa nội dung */
+}
+
+/* Tiêu đề phần About */
+.about-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #b74b4b;
+    text-shadow: 0 0 10px #b74b4b;
+}
+
+/* Đoạn văn trong phần About */
+.about-content p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Tab */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Tab đã được chọn */
+.tab {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #b74b4b;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.tab.active {
+    background-color: #b74b4b;
+    color: #000;
+}
+
+.tab:hover {
+    background-color: #b74b4b;
+    color: #000;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-content h3 {
+    color: #b74b4b;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.tab-content p {
+    margin-bottom: 10px;
+}
+/* Phần Skills và Education */
+.skill-education-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Skill và Education */
+.skill, .education {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid transparent;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Khi hover vào, gạch dưới màu cam */
+.skill:hover, .education:hover {
+    color: #b74b4b;  /* Màu chữ khi hover */
+    border-bottom: 3px solid #b74b4b; /* Gạch dưới màu cam khi hover */
+    background-color: transparent;
+}
+
+/* Đảm bảo phần Skill và Education có thể căn chỉnh trong màn hình nhỏ */
+@media (max-width: 884px) {
+    .skill-education-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .skill, .education {
+        margin-bottom: 10px; /* Tạo khoảng cách giữa các mục */
+    }
+}
+
+/* Tối ưu cho điện thoại */
+@media (max-width: 440px) {
+    .skill-education-container {
+        text-align: center;
+    }
+
+    .skill, .education {
+        width: 100%;
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+}
+
+
+/* Tạo hiệu ứng fadeIn */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Tối ưu hóa cho các thiết bị với màn hình nhỏ */
+@media (max-width: 884px) {
+    #about {
+        padding: 30px 10px; /* Giảm bớt khoảng cách xung quanh */
+    }
+
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-pic img {
+        width: 80%;
+        height: 250px;
+        margin-bottom: 20px; /* Đảm bảo hình ảnh có khoảng cách với văn bản */
+    }
+
+    .about-content {
+        max-width: 100%; /* Cho phép nội dung chiếm toàn bộ chiều rộng */
+    }
+
+    .tabs {
+        flex-direction: column;
+        gap: 15px; /* Tăng khoảng cách giữa các tab */
+    }
+
+    .tab {
+        font-size: 1.2rem; /* Làm chữ trong tab lớn hơn */
+    }
+}
+
+/* Tối ưu cho các thiết bị màn hình rất nhỏ (ví dụ, điện thoại) */
+@media (max-width: 440px) {
+    #about {
+        padding: 20px 10px;
+    }
+
+    .about-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-pic img {
+        width: 90%;
+        height: 200px; /* Giảm chiều cao của hình ảnh */
+    }
+
+    .about-content h1 {
+        font-size: 2rem; /* Giảm kích thước tiêu đề */
+    }
+
+    .about-content p {
+        font-size: 0.9rem; /* Giảm kích thước đoạn văn */
+    }
+
+    .tabs {
+        gap: 10px; /* Giảm khoảng cách giữa các tab */
+    }
+
+    .tab {
+        font-size: 1rem; /* Giảm kích thước chữ trong tab */
+        padding: 8px 16px; /* Giảm kích thước padding */
+    }
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+@media (max-width: 884px) {
+    .row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-col-2 {
+        text-align: center;
+    }
+}
+
+@media (max-width:884px) {
+    nav .logo{
+        position: absolute;
+        top: 16px;
+        left: 15px;
+        font-size: 1.5rem;
+    }
+    .main-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .nav-container .links{
+        display: none;
+    }
+    .hamburg,
+    .cancel{
+        display: block;
+    }
+    .main-container .content{
+        width: 80%;
+    }
+    .social-links i{
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.5rem;
+    }
+    .main-container .image{
+        z-index: -1;
+        width: 50%;
+        height: 60%;
+    }
+    .row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-col-2 {
+        text-align: center;
+    }
+}
+@media (max-width:440px){
+    .main-container .image{
+        width: 50%;
+        height: 60%;
+        margin-bottom: 0px;
+    }
+    .main-container .content{
+        width: 80%;
+    }
+    .main-container button{
+        margin-top: 15px;
+    }
+}
